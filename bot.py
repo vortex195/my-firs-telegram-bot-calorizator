@@ -15,8 +15,8 @@ BOT_TOKEN = os.getenv("BOT_TOKEN")
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 # =============================================
 
-# Модель 3.8-flash 
-MODEL_NAME = "models/gemini-3.8-flash"
+# Модель 3.5-flash-lite
+MODEL_NAME = "models/gemini-3.5-flash-lite"
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher()
