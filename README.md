@@ -5,3 +5,4 @@ How to run my bot?
 2.Its welcome is russian
 3.You can write anything about food and drinks and bot search in Google information about your food for example Apple
 4.And it writes you a calories about your food and food`s ingredients
+link to the bot https://t.me/CalorizatorGeminiBot
