@@ -3,6 +3,9 @@ import logging
 import os
 import aiohttp
 from dotenv import load_dotenv
+from aiohttp import web
+
+
 
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import CommandStart
@@ -114,8 +117,24 @@ async def calculate_kbju(message: types.Message):
         await message.answer(f"⚠️ Ошибка:\n<code>{e}</code>", parse_mode="HTML")
 
 
+async def health_check(request):
+    return web.Response(text="Bot is alive!")
+
+
+async def start_web_server():
+    app = web.Application()
+    app.router.add_get("/", health_check)
+    runner = web.AppRunner(app)
+    await runner.setup()
+    port = int(os.environ.get("PORT", 8080))
+    site = web.TCPSite(runner, "0.0.0.0", port)
+    await site.start()
+    logging.info(f"Веб-сервер запущен на порту {port}")
+
+
 async def main():
     logging.basicConfig(level=logging.INFO)
+    await start_web_server()
     await bot.delete_webhook(drop_pending_updates=True)
 
     print("Бот успешно запущен!")
